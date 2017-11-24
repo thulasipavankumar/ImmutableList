@@ -1,0 +1,3 @@
+[submodule "cloning"]
+	path = cloning
+	url = https://github.com/kostaskougios/cloning
