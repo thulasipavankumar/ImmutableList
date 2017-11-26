@@ -38,21 +38,21 @@ public class Sort {
 
     public static HashMap splitIntoIdenticalObjects(List toBeSorted) {
         HashMap<String,List> destList  = new HashMap<String,List>();
-        Iterator it = returnAvailableClassesInList(toBeSorted);
+        Iterator it = returnAvailableClassesInGivenList(toBeSorted);
         while(it.hasNext()){
             Object obj = it.next();
-            List identicalObjects = returnListContainingSameObjects(obj,toBeSorted);
+            List identicalObjects = getListWithIdenticalObjects(obj,toBeSorted);
             destList.put(obj.toString(),identicalObjects);
         }
        
         return destList;
     }
 
-    private static List returnListContainingSameObjects(Object requiredObject,List toBeSorted) {
-        System.out.println("");
+    private static List getListWithIdenticalObjects(Object requiredObject,List toBeSorted) {
+       // System.out.println("");
         List list = new ArrayList();
         for(Object object:toBeSorted){
-            if(isObjectOfSameClassType(object,requiredObject)){
+            if(areObjectsOfSameClassType(object,requiredObject)){
                 list.add(object);
                 //System.out.println("addding "+object.getClass());
             }
@@ -60,7 +60,7 @@ public class Sort {
         return list;
     }
 
-    private static boolean isObjectOfSameClassType(Object src, Object des) {
+    private static boolean areObjectsOfSameClassType(Object src, Object des) {
         String srcClassName = src.getClass().getName();
         String desClassName = des.toString();
        // System.out.println("Comparing "+srcClassName+" "+desClassName);
@@ -71,7 +71,7 @@ public class Sort {
         return false;
     }
 
-    public static Iterator returnAvailableClassesInList(List sourceList) {
+    public static Iterator returnAvailableClassesInGivenList(List sourceList) {
         Set hash_Set = new HashSet();
         for (Object obj : sourceList) {
             hash_Set.add(obj.getClass().getName());           
